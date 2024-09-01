@@ -19,8 +19,15 @@ public class InputView {
                 .toList();
 
         return new Cars(cars);
+    }
 
+    public static int readTrialCount() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        String inputStrings = Console.readLine().trim();
 
+        int trialCount = Integer.parseInt(inputStrings);
+
+        return trialCount;
     }
 
 }

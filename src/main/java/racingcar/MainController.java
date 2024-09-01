@@ -6,16 +6,21 @@ import racingcar.view.InputView;
 public class MainController {
 
     public void run() {
-        Cars cars = initCars();
-        proceedGame(cars);
+        Cars cars = initGame();
+        int trialCount = initTrialCount();
+        proceedGame(cars, trialCount);
         endGame(cars);
     }
 
-    private Cars initCars() {
+    private int initTrialCount() {
+        return InputView.readTrialCount();
+    }
+
+    private Cars initGame() {
         return InputView.readCarNames();
     }
 
-    private void proceedGame(Cars cars) {
+    private void proceedGame(Cars cars, int trialCount) {
     }
 
     private void endGame(Cars cars) {
