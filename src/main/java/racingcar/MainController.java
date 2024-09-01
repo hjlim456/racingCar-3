@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.domain.Cars;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class MainController {
 
@@ -22,8 +23,12 @@ public class MainController {
 
     private void proceedGame(Cars cars, int trialCount) {
         int triedCount = 0;
+        System.out.println("실행 결과");
         while (triedCount < trialCount){
             cars.tryMove();
+            triedCount++;
+
+            OutputView.printTryResult(cars);
         }
     }
 
