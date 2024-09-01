@@ -21,6 +21,10 @@ public class MainController {
     }
 
     private void proceedGame(Cars cars, int trialCount) {
+        int triedCount = 0;
+        while (triedCount < trialCount){
+            cars.tryMove();
+        }
     }
 
     private void endGame(Cars cars) {
