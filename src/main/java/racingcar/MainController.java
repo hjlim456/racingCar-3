@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.List;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -33,5 +35,7 @@ public class MainController {
     }
 
     private void endGame(Cars cars) {
+        List<Car> winnerList = cars.getWinnerList();
+        OutputView.printWinners(winnerList);
     }
 }
