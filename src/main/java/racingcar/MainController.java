@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Cars;
+import racingcar.view.InputView;
 
 public class MainController {
 
@@ -11,6 +12,7 @@ public class MainController {
     }
 
     private Cars initCars() {
+        return InputView.readCarNames();
     }
 
     private void proceedGame(Cars cars) {
