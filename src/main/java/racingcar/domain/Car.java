@@ -23,10 +23,10 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public String printPosition() {
-        return name + " : " + "-".repeat(position);
+        return name.getName() + " : " + "-".repeat(position.getPosition());
     }
 }

@@ -9,8 +9,8 @@ public class CarName {
 
 
     public CarName(String name) {
-        validateNameLength();
         this.name = name;
+        validateNameLength();
     }
 
     private void validateNameLength() {

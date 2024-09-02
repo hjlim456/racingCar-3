@@ -12,4 +12,8 @@ public class CarPosition {
     public int incrementPosition() {
         return position++;
     }
+
+    public int getPosition() {
+        return position;
+    }
 }

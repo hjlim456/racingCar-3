@@ -9,11 +9,13 @@ import racingcar.domain.Car;
 import racingcar.domain.CarName;
 import racingcar.domain.Cars;
 import racingcar.message.ErrorMessage;
+import racingcar.message.ViewMessage;
 
 public class InputView {
+    private static final String SPLIT_DELIMITER = ",";
 
     public static Cars readCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println(ViewMessage.INPUT_TRIAL_COUNT_MESSAGE.getMessage());
         String inputStrings = Console.readLine().trim();
 
         //빈값 입력시 검증
@@ -22,7 +24,7 @@ public class InputView {
         }
 
 
-        String[] carNames  = inputStrings.split(",");
+        String[] carNames  = inputStrings.split(SPLIT_DELIMITER);
         List<Car> cars = Arrays.stream(carNames)
                 .map(String::trim)
                 .filter(name -> !name.isEmpty())
@@ -44,7 +46,7 @@ public class InputView {
     }
 
     public static int readTrialCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(ViewMessage.INPUT_TRIAL_COUNT_MESSAGE.getMessage());
         String inputStrings = Console.readLine().trim();
         // 빈값 검증
         if (inputStrings.isBlank() || inputStrings == null) {
