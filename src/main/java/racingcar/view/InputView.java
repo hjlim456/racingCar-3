@@ -46,8 +46,23 @@ public class InputView {
     public static int readTrialCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         String inputStrings = Console.readLine().trim();
+        // 빈값 검증
+        if (inputStrings.isBlank() || inputStrings == null) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
+        }
 
-        int trialCount = Integer.parseInt(inputStrings);
+        int trialCount;
+        //숫자가 아닌 문자 검증
+        try {
+            trialCount = Integer.parseInt(inputStrings);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_INTEGER.getMessage());
+        }
+
+        //0또는 음수
+        if (trialCount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_WRONG_VALUE.getMessage());
+        }
 
         return trialCount;
     }
