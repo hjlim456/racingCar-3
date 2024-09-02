@@ -28,6 +28,15 @@ public class InputView {
                 .map(Car::new)
                 .toList();
         //중복검증 추가하기
+        Set<String> uniqueNames = new HashSet<>();
+        cars.stream()
+                .map(Car::getName)
+                .filter(name-> !uniqueNames.add(name))
+                .findAny()
+                .ifPresent(duplicatedName->{
+                    throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATED_NAME.getMessage());
+                });
+
 
         return new Cars(cars);
     }
