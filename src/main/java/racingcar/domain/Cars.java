@@ -28,17 +28,16 @@ public record Cars(List<Car> carList) {
                 .toList();
     }
 
-    public static Cars splitStringToCars(String inputStrings) {
-        List<Car> cars = splitNameToCarList(inputStrings);
+    public static Cars createCars(String inputStrings) {
+        List<Car> cars = createNameToCarList(inputStrings);
         validateDuplicatedName(cars);
 
         return new Cars(cars);
     }
-    private static List<Car> splitNameToCarList(String inputStrings) {
+    private static List<Car> createNameToCarList(String inputStrings) {
         String[] carNames  = inputStrings.split(InputView.SPLIT_DELIMITER);
         List<Car> cars = Arrays.stream(carNames)
                 .map(String::trim)
-                .filter(name -> !name.isEmpty())
                 .map(CarName::new)
                 .map(Car::new)
                 .toList();

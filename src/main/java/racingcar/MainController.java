@@ -21,7 +21,7 @@ import racingcar.view.OutputView;
 
     private Cars initCar() {
         String inputString = InputView.readCarNames();
-        Cars cars = Cars.splitStringToCars(inputString);
+        Cars cars = Cars.createCars(inputString);
         return cars;
     }
 
