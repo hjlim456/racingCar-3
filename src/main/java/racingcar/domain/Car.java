@@ -3,17 +3,18 @@ package racingcar.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car {
-    private final String name;
-    private  int position=0;
+    private final CarName name;
+    private final CarPosition position;
 
-    public Car(String name ) {
+    public Car(CarName name ) {
         this.name = name;
+        this.position = new CarPosition(0);
     }
 
 
     public void moveRandomly() {
         if (Randoms.pickNumberInRange(0,9)>=4){
-            position++;
+            position.incrementPosition();
         }
     }
 

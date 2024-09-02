@@ -6,20 +6,20 @@ import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class MainController {
+    public class MainController {
 
-    public void run() {
-        Cars cars = initGame();
-        int trialCount = initTrialCount();
-        proceedGame(cars, trialCount);
-        endGame(cars);
-    }
+        public void run() {
+            Cars cars = initCarname();
+            int trialCount = initTrialCount();
+            proceedGame(cars, trialCount);
+            endGame(cars);
+        }
 
     private int initTrialCount() {
         return InputView.readTrialCount();
     }
 
-    private Cars initGame() {
+    private Cars initCarname() {
         return InputView.readCarNames();
     }
 
