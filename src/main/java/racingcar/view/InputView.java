@@ -16,14 +16,16 @@ public class InputView {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String inputStrings = Console.readLine().trim();
 
-        //빈값 검증 추가하기
+        //빈값 입력시 검증
         if(inputStrings.isBlank()){
             throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
         }
 
+
         String[] carNames  = inputStrings.split(",");
         List<Car> cars = Arrays.stream(carNames)
                 .map(String::trim)
+                .filter(name -> !name.isEmpty())
                 .map(CarName::new)
                 .map(Car::new)
                 .toList();
