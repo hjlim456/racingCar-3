@@ -12,61 +12,48 @@ import racingcar.message.ErrorMessage;
 import racingcar.message.ViewMessage;
 
 public class InputView {
-    private static final String SPLIT_DELIMITER = ",";
+    public static final String SPLIT_DELIMITER = ",";
 
-    public static Cars readCarNames() {
+    public static String readCarNames() {
         System.out.println(ViewMessage.INPUT_TRIAL_COUNT_MESSAGE.getMessage());
         String inputStrings = Console.readLine().trim();
-
-        //빈값 입력시 검증
-        if(inputStrings.isBlank()){
-            throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
-        }
-
-
-        String[] carNames  = inputStrings.split(SPLIT_DELIMITER);
-        List<Car> cars = Arrays.stream(carNames)
-                .map(String::trim)
-                .filter(name -> !name.isEmpty())
-                .map(CarName::new)
-                .map(Car::new)
-                .toList();
-        //중복검증 추가하기
-        Set<String> uniqueNames = new HashSet<>();
-        cars.stream()
-                .map(Car::getName)
-                .filter(name-> !uniqueNames.add(name))
-                .findAny()
-                .ifPresent(duplicatedName->{
-                    throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATED_NAME.getMessage());
-                });
-
-
-        return new Cars(cars);
+        validateNotBlank(inputStrings);
+        return inputStrings;
     }
+
+
 
     public static int readTrialCount() {
         System.out.println(ViewMessage.INPUT_TRIAL_COUNT_MESSAGE.getMessage());
         String inputStrings = Console.readLine().trim();
-        // 빈값 검증
-        if (inputStrings.isBlank() || inputStrings == null) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
-        }
 
-        int trialCount;
-        //숫자가 아닌 문자 검증
-        try {
-            trialCount = Integer.parseInt(inputStrings);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_INTEGER.getMessage());
-        }
+        validateNotBlank(inputStrings);
+        validateStringisInteger(inputStrings);
+        int trialCount = Integer.parseInt(inputStrings);
 
-        //0또는 음수
-        if (trialCount <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_WRONG_VALUE.getMessage());
-        }
+        validateIsPositiveNumber(trialCount);
 
         return trialCount;
     }
+
+    private static void validateIsPositiveNumber(int trialCount) {
+        if (trialCount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_WRONG_VALUE.getMessage());
+        }
+    }
+
+    private static void validateNotBlank(String inputStrings) {
+        if (inputStrings.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
+        }
+    }
+    private static void validateStringisInteger(String inputStrings) {
+        try {
+            int trialCount = Integer.parseInt(inputStrings);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_INTEGER.getMessage());
+        }
+    }
+
 
 }
