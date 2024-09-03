@@ -20,8 +20,7 @@ import racingcar.view.OutputView;
     }
 
     private Cars initCar() {
-        String inputString = InputView.readCarNames();
-        Cars cars = Cars.createCars(inputString);
+        Cars cars = Cars.createCars(InputView.readCarNames());
         return cars;
     }
 

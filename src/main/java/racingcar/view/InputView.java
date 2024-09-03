@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import static racingcar.domain.CarName.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,7 +20,8 @@ public class InputView {
     public static String readCarNames() {
         System.out.println(ViewMessage.INPUT_TRIAL_COUNT_MESSAGE.getMessage());
         String inputStrings = Console.readLine().trim();
-        CarName.validateNotBlank(inputStrings);
+        validateNotBlank(inputStrings);
+
         return inputStrings;
     }
 

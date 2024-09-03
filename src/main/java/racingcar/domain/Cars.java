@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import racingcar.message.ErrorMessage;
 import racingcar.view.InputView;
 
@@ -28,21 +29,23 @@ public record Cars(List<Car> carList) {
                 .toList();
     }
 
-    public static Cars createCars(String inputStrings) {
-        List<Car> cars = createNameToCarList(inputStrings);
-        validateDuplicatedName(cars);
+    public static Cars createCars(String carNames) {
+        List<Car> carList = splitByDelimiter(carNames);
+        validateDuplicatedName(carList);
 
-        return new Cars(cars);
+        return new Cars(carList);
     }
-    private static List<Car> createNameToCarList(String inputStrings) {
+    public static List<Car> splitByDelimiter(String inputStrings) {
         String[] carNames  = inputStrings.split(InputView.SPLIT_DELIMITER);
-        List<Car> cars = Arrays.stream(carNames)
+
+        List<Car> carList = Arrays.stream(carNames)
                 .map(String::trim)
                 .map(CarName::new)
                 .map(Car::new)
                 .toList();
-        return cars;
+        return carList;
     }
+
 
     private static void validateDuplicatedName(List<Car> cars) {
         Set<String> uniqueNames = new HashSet<>();
@@ -54,4 +57,13 @@ public record Cars(List<Car> carList) {
                     throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATED_NAME.getMessage());
                 });
     }
+
+    @Override
+    public String toString() {
+        return carList.stream()
+                .map(Car::printPosition)
+                .collect(Collectors.joining("\n"));
+    }
+
+
 }
