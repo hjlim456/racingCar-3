@@ -12,8 +12,8 @@ public class Car {
     }
 
 
-    public void moveRandomly() {
-        if (Randoms.pickNumberInRange(0,9)>=4){
+    public void moveForwardIfTrue(boolean randomWith60percent) {
+        if (randomWith60percent){
             position.incrementPosition();
         }
     }

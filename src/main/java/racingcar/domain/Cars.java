@@ -6,12 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.Utils;
 import racingcar.message.ErrorMessage;
 import racingcar.view.InputView;
 
 public record Cars(List<Car> carList) {
     public void tryMove() {
-        carList.forEach(Car::moveRandomly);
+        carList.forEach(car ->car.moveForwardIfTrue(Utils.isTrueWith60percent()));
     }
 
     public void getCarPositionResult() {
